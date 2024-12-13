@@ -1,10 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  styleUrls: ['./user-details.component.scss']
 })
-export class UserDetailsComponent {
+export class UserDetailsComponent implements OnInit {
 
+  title: String = "";
+  id: number;
+  constructor(public formBuilder: FormBuilder, private ref: MatDialogRef<UserDetailsComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.title = this.data.title;
+    this.id = this.data.id;
+  }
+
+  ngOnInit() {
+  }
+  userForm = this.formBuilder.group({
+    "id": this.formBuilder.control(null),
+    "name": this.formBuilder.control('', Validators.required),
+    "email": this.formBuilder.control('', Validators.compose([Validators.required, Validators.email])),
+    "role": this.formBuilder.control('Engineer'),
+    "status": this.formBuilder.control(true),
+    "joining_date": this.formBuilder.control('', Validators.required),
+    "address": this.formBuilder.control('', Validators.required),
+  });
+
+  closeForm() {
+    this.ref.close();
+  }
 }
