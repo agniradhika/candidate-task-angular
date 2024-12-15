@@ -7,6 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import { MatSortModule } from "@angular/material/sort";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatButtonToggleModule
   ]
 })
 export class MaterialModule { }

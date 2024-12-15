@@ -1,8 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, numberAttribute } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserService } from "../../services/user.service";
-import { viewAllUsers, viewAllUserFail, viewAllUserSuccess } from "../actions/user.actions";
-import { exhaustMap, map, of, catchError} from "rxjs";
+import {
+  viewAllUsers,
+  viewAllUserFail,
+  viewAllUserSuccess,
+  viewUserById,
+  viewUserByIdSuccess,
+  viewUserByIdFail,
+} from "../actions/user.actions";
+import { exhaustMap, map, of, catchError } from "rxjs";
 
 @Injectable()
 export class UserEffects {
@@ -20,4 +27,18 @@ export class UserEffects {
       )
     })
   ))
+
+  _viewUserById = createEffect(() =>
+    this.actions$.pipe(
+      ofType(viewUserById),
+      exhaustMap((action) => {
+        return this.userService.getUserById(action.id).pipe(
+          map((data) => {
+            return viewUserByIdSuccess({ obj: data })
+          }),
+          catchError((error) => of(viewUserByIdFail({ errormessage: error.message() })))
+        )
+      })
+    )
+  )
 }

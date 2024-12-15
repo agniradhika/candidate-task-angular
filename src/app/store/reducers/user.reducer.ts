@@ -1,5 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { viewAllUserFail, viewAllUserSuccess } from '../actions/user.actions';
+import {
+  viewAllUserFail,
+  viewAllUserSuccess, viewUserByIdFail,
+  viewUserByIdSuccess
+} from '../actions/user.actions';
 import { UserState } from "../user.state";
 
 export const UsersReducer = createReducer(
@@ -17,7 +21,20 @@ export const UsersReducer = createReducer(
       list: [],
       errormessage: action.errormessage
     }
-  })
+  }),
+  on(viewUserByIdSuccess, (state, action) => {
+    return {
+      ...state,
+      userObj: action.obj,
+      errormessage: ''
+    }
+  }),
+  on(viewUserByIdFail, (state, action) => {
+    return {
+      ...state,
+      errormessage: action.errormessage
+    }
+  }),
 );
 
 export function UserReducer (state: any, action: any) {

@@ -4,7 +4,7 @@ import { UserDetailsComponent } from "../user-details/user-details.component";
 import { Store } from "@ngrx/store";
 import { Users } from "../../store/Model/Users";
 import { getAllUsersList } from "../../store/selectors/user.selectors";
-import { viewAllUsers } from "../../store/actions/user.actions";
+import { viewAllUsers, viewUserById } from "../../store/actions/user.actions";
 
 @Component({
   selector: 'app-user-list',
@@ -13,7 +13,7 @@ import { viewAllUsers } from "../../store/actions/user.actions";
 })
 export class UserListComponent implements OnInit {
   allUsers: Users[] = [];
-  displayedColums: string[] = ["id", "name", "email", "role", "address", "status", "joining_date"]
+  displayedColumns: string[] = ["id", "name", "email", "role", "status", "action"]
   constructor( private dialog: MatDialog, private store: Store) {
   }
 
@@ -26,10 +26,6 @@ export class UserListComponent implements OnInit {
         })
   }
 
-  viewUser() {
-    this.openForm(23,"View User")
-  }
-
   openForm(id: number, title: string) {
     this.dialog.open(UserDetailsComponent,{
       width: '50%',
@@ -40,5 +36,10 @@ export class UserListComponent implements OnInit {
         title: title
       }
     })
+  }
+
+  openUserForm(id: number, title: string) {
+    this.store.dispatch(viewUserById({id: id}))
+    this.openForm(id, title);
   }
 }

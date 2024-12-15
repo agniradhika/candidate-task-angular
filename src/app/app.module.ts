@@ -30,7 +30,7 @@ import { UserReducer } from "./store/reducers/user.reducer";
     EffectsModule.forFeature([UserEffects]),
     EffectsModule.forRoot([UserEffects]),
     StoreModule.forRoot({user: UserReducer}),
-    StoreModule.forFeature('user', UserReducer)
+    StoreModule.forFeature('user', UserReducer),
   ],
   providers: [
     provideAnimationsAsync()
