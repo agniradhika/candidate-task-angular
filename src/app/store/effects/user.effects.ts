@@ -7,9 +7,9 @@ import {
   viewAllUserSuccess,
   viewUserById,
   viewUserByIdSuccess,
-  viewUserByIdFail,
+  viewUserByIdFail, editUserById, editUserByIdSuccess, editUserByIdFail,
 } from "../actions/user.actions";
-import { exhaustMap, map, of, catchError } from "rxjs";
+import { exhaustMap, map, of, catchError, switchMap } from "rxjs";
 
 @Injectable()
 export class UserEffects {
@@ -41,4 +41,19 @@ export class UserEffects {
       })
     )
   )
+
+  _editUserById = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editUserById),
+      switchMap((action) => {
+         return this.userService.editUserById(action.obj).pipe(
+          map((data) => {
+            return editUserByIdSuccess({ obj: action.obj })
+          }),
+          catchError((error) => of(editUserByIdFail({ errormessage: error.message() })))
+        )
+      })
+    )
+  )
+
 }

@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  editUserByIdSuccess,
   viewAllUserFail,
   viewAllUserSuccess, viewUserByIdFail,
   viewUserByIdSuccess
@@ -33,6 +34,16 @@ export const UsersReducer = createReducer(
     return {
       ...state,
       errormessage: action.errormessage
+    }
+  }),
+  on(editUserByIdSuccess, (state, action) => {
+    const _newData = state.list.map(o => {
+      return o.id === action.obj.id ? action.obj : o
+    })
+    return {
+      ...state,
+      list: _newData,
+      errormessage: ''
     }
   }),
 );

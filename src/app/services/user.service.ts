@@ -15,7 +15,7 @@ export class UserService {
   getUserById(id: number) {
     return this.httpClient.get<Users>(this.baseURL+'/'+id);
   }
-  editUserbyId(data: Users) {
+  editUserById(data: Users) {
     return this.httpClient.put(this.baseURL+'/'+data.id, data);
   }
 }
