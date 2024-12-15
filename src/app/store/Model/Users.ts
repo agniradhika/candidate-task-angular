@@ -7,3 +7,9 @@ export interface Users {
   joining_date: string,
   address: string
 }
+
+export interface UsersModel {
+  list:Users[],
+  userObj:Users,
+  errormessage:string
+}
