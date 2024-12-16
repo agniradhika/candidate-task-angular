@@ -7,13 +7,13 @@
       "role": "Software Engineer",
       "address": "123 Maple Street, Springfield, IL, 62701",
       "joining_date": "2023-04-15",
-      "status": "Active"
+      "status": "Joined"
     },
     {
       "id": "5502",
       "name": "Bob Smith",
       "email": "bob.smith@example.com",
-      "status": "Inactive",
+      "status": "Pending",
       "joining_date": "2020-09-10",
       "role": "Data Analyst",
       "address": "456 Oak Avenue, San Diego, CA, 92101"
@@ -22,7 +22,7 @@
       "id": "5503",
       "name": "Catherine Green",
       "email": "catherine.green@example.com",
-      "status": "Active",
+      "status": "Joined",
       "joining_date": "2021-06-22",
       "role": "Project Manager",
       "address": "789 Pine Road, Austin, TX, 73301"
@@ -31,7 +31,7 @@
       "id": "5504",
       "name": "David Lee",
       "email": "david.lee@example.com",
-      "status": "Active",
+      "status": "Joined",
       "joining_date": "2022-11-01",
       "role": "UI/UX Designer",
       "address": "321 Birch Lane, Miami, FL, 33101"
@@ -49,7 +49,7 @@
       "id": "5506",
       "name": "Michael Thompson",
       "email": "michael.thompson@example.com",
-      "status": "Active",
+      "status": "Joined",
       "joining_date": "2023-05-12",
       "role": "Software Engineer",
       "address": "78 Birch Street, Boston, MA, 02108"
@@ -58,7 +58,7 @@
       "id": "5507",
       "name": "Sophia Johnson",
       "email": "sophia.johnson@example.com",
-      "status": "Inactive",
+      "status": "Offer Sent",
       "joining_date": "2023-05-12",
       "role": "Data Scientist",
       "address": "42 Cedar Lane, Miami, FL, 33101"
@@ -67,7 +67,7 @@
       "id": "5508",
       "name": "Ethan Brown",
       "email": "ethan.brown@example.com",
-      "status": "Active",
+      "status": "Joined",
       "joining_date": "2023-05-12",
       "role": "Software Engineer",
       "address": "21 Maple Avenue, Austin, TX, 73301"
@@ -85,7 +85,7 @@
       "id": "5510",
       "name": "Lucas Martinez",
       "email": "lucas.martinez@example.com",
-      "status": "Active",
+      "status": "Joined",
       "joining_date": "2020-11-20",
       "role": "Marketing Specialist",
       "address": "74 Aspen Boulevard, Chicago, IL, 60605"
@@ -94,7 +94,7 @@
       "id": "5511",
       "name": "Isabella White",
       "email": "isabella.white@example.com",
-      "status": "Active",
+      "status": "Joined",
       "joining_date": "2020-11-20",
       "role": "Marketing Specialist",
       "address": "37 Poplar Circle, Orlando, FL, 32801"
