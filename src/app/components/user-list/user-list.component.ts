@@ -13,7 +13,7 @@ import { viewAllUsers, viewUserById } from "../../store/actions/user.actions";
 })
 export class UserListComponent implements OnInit {
   allUsers: Users[] = [];
-  displayedColumns: string[] = ["id", "name", "email", "role", "status", "action"]
+  displayedColumns: string[] = ["id", "name", "email", "role", "status", "action"];
   constructor( private dialog: MatDialog, private store: Store) {
   }
 

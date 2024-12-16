@@ -9,6 +9,6 @@ export const viewUserById = createAction('[User] View User',  props<{id:number}>
 export const viewUserByIdSuccess = createAction('[User] View User Success', props<{obj:Users}>())
 export const viewUserByIdFail = createAction('[User] View User Fail', props<{errormessage:string}>())
 
-export const editUserById = createAction('[Users] Edit User',props<{obj: Users}>());
-export const editUserByIdSuccess = createAction('[Users] Edit User Success', props<{obj:Users}>());
-export const editUserByIdFail = createAction('[Users] Edit User Failure', props<{ errormessage: string }>());
+export const editUserById = createAction('[User] Edit User',props<{obj: Users}>());
+export const editUserByIdSuccess = createAction('[User] Edit User Success', props<{obj:Users}>());
+export const editUserByIdFail = createAction('[User] Edit User Fail', props<{ errormessage: string }>());

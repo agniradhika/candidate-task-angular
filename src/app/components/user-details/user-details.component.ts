@@ -37,12 +37,13 @@ export class UserDetailsComponent implements OnInit {
         this.userForm.disable();
       });
   }
+
   userForm = this.formBuilder.group({
     "id": this.formBuilder.control(0, Validators.required),
     "name": this.formBuilder.control('', Validators.required),
     "email": this.formBuilder.control('', Validators.compose([Validators.required, Validators.email])),
     "role": this.formBuilder.control('Engineer'),
-    "status": this.formBuilder.control(""),
+    "status": this.formBuilder.control(''),
     "joining_date": this.formBuilder.control('', Validators.required),
     "address": this.formBuilder.control('', Validators.required),
   });
@@ -62,7 +63,8 @@ export class UserDetailsComponent implements OnInit {
 
   editUserById(id: number) {
     //check if data is changed
-    if(this.isFormUpdated()) {
+    if(this.isFormUpdated() && this.userForm.valid) {
+      //set form values in users format
       const users: Users = {
         id: this.userForm.value.id as number,
         name: this.userForm.value.name as string,
@@ -77,6 +79,7 @@ export class UserDetailsComponent implements OnInit {
       this.closeForm();
     }
   }
+
   isFormUpdated(): boolean {
     return JSON.stringify(this.userForm.value) !== JSON.stringify(this.previousValue);
   }

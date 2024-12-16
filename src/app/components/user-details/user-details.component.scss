@@ -21,3 +21,13 @@ button {
   margin: 2px;
   justify-content: end;
 }
+.toggle-button {
+  position: absolute;
+  right: 20px;
+  top:20px;
+}
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

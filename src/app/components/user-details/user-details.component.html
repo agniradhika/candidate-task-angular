@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-header>
       <h1>{{ title }} - {{id}}</h1>
-      <mat-slide-toggle  [checked]="isEditModeOn" (toggleChange)="editModeToggle()">
+      <mat-slide-toggle class="toggle-button" [checked]="isEditModeOn" (toggleChange)="editModeToggle()">
         Edit Mode
       </mat-slide-toggle>
     </mat-card-header>
@@ -32,8 +32,8 @@
         <textarea formControlName="address" matInput></textarea>
       </mat-form-field>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" *ngIf="isEditModeOn" type="submit" (click)="editUserById(id)">Save</button>
+    <mat-card-actions class="action-buttons">
+      <button mat-raised-button color="primary" *ngIf="isEditModeOn" type="submit" (click)="editUserById(id)" [disabled]='!this.userForm.valid'>Save</button>
       <button (click)="closeForm()" mat-raised-button color="accent">Close</button>
     </mat-card-actions>
   </mat-card>

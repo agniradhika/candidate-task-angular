@@ -1,4 +1,4 @@
-import { Injectable, numberAttribute } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserService } from "../../services/user.service";
 import {
@@ -7,7 +7,10 @@ import {
   viewAllUserSuccess,
   viewUserById,
   viewUserByIdSuccess,
-  viewUserByIdFail, editUserById, editUserByIdSuccess, editUserByIdFail,
+  viewUserByIdFail,
+  editUserById,
+  editUserByIdSuccess,
+  editUserByIdFail,
 } from "../actions/user.actions";
 import { exhaustMap, map, of, catchError, switchMap } from "rxjs";
 
