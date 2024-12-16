@@ -13,3 +13,12 @@ table {
 .search-field:disabled {
   visibility: hidden;
 }
+
+.search-field {
+  width: 70%;
+  padding: 5px 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px 0;
+}

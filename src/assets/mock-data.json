@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "5501",
-      "name": "Alice Johnson",
+      "name": "Alice Johnson ",
       "email": "alice.johnson@example.com",
       "role": "Software Engineer",
       "address": "123 Maple Street, Springfield, IL, 62701",
@@ -38,6 +38,69 @@
     },
     {
       "id": "5505",
+      "name": "Emma Davis",
+      "email": "emily.davis@example.com",
+      "role": "HR Specialist",
+      "address": "654 Willow Way, Denver, CO, 80201",
+      "joining_date": "2018-03-15",
+      "status": "On Leave"
+    },
+    {
+      "id": "5506",
+      "name": "Michael Thompson",
+      "email": "michael.thompson@example.com",
+      "status": "Active",
+      "joining_date": "2023-05-12",
+      "role": "Software Engineer",
+      "address": "78 Birch Street, Boston, MA, 02108"
+    },
+    {
+      "id": "5507",
+      "name": "Sophia Johnson",
+      "email": "sophia.johnson@example.com",
+      "status": "Inactive",
+      "joining_date": "2023-05-12",
+      "role": "Data Scientist",
+      "address": "42 Cedar Lane, Miami, FL, 33101"
+    },
+    {
+      "id": "5508",
+      "name": "Ethan Brown",
+      "email": "ethan.brown@example.com",
+      "status": "Active",
+      "joining_date": "2023-05-12",
+      "role": "Software Engineer",
+      "address": "21 Maple Avenue, Austin, TX, 73301"
+    },
+    {
+      "id": "5509",
+      "name": "Ava Wilson",
+      "email": "ava.wilson@example.com",
+      "role": "Project Manager",
+      "address": "91 Oak Drive, Seattle, WA, 98101",
+      "joining_date": "2021-09-01",
+      "status": "Suspended"
+    },
+    {
+      "id": "5510",
+      "name": "Lucas Martinez",
+      "email": "lucas.martinez@example.com",
+      "status": "Active",
+      "joining_date": "2020-11-20",
+      "role": "Marketing Specialist",
+      "address": "74 Aspen Boulevard, Chicago, IL, 60605"
+    },
+    {
+      "id": "5511",
+      "name": "Isabella White",
+      "email": "isabella.white@example.com",
+      "status": "Active",
+      "joining_date": "2020-11-20",
+      "role": "Marketing Specialist",
+      "address": "37 Poplar Circle, Orlando, FL, 32801"
+    },
+    {
+      "id": "5512",
       "name": "Emily Davis",
       "email": "emily.davis@example.com",
       "status": "On Leave",
