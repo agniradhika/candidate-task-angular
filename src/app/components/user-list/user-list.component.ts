@@ -86,7 +86,6 @@ export class UserListComponent implements OnInit {
     this.filterObj = { ... this.filterObj,
       ...{[filter]: filterString},
     };
-    console.log("filterObj", this.filterObj)
     this.store.dispatch(filterUsers({ filter: this.filterObj }));
   }
 }

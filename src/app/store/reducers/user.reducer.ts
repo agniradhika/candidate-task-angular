@@ -78,7 +78,6 @@ export const UsersReducer = createReducer(
       errormessage: ''
     }
   }),
-
 );
 
 export function UserReducer (state: any, action: any) {

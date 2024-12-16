@@ -13,7 +13,7 @@ import { Users } from "../../store/Model/Users";
 })
 export class UserDetailsComponent implements OnInit {
 
-  title: String = "";
+  title: String = "View Details";
   id: number = 0;
   isEditModeOn: Boolean = false;
   previousValue: any;
@@ -22,7 +22,6 @@ export class UserDetailsComponent implements OnInit {
               private ref: MatDialogRef<UserDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private store: Store) {
-    this.title = this.data.title;
     this.id = this.data.id;
   }
 
@@ -56,9 +55,11 @@ export class UserDetailsComponent implements OnInit {
   editModeToggle() {
     this.isEditModeOn = !this.isEditModeOn;
     if(this.isEditModeOn == true) {
+      this.title = "Edit Details";
       this.userForm.enable();
     } else {
-      this.userForm.disable()
+      this.title = "View Details";
+      this.userForm.disable();
     }
   }
 
@@ -76,7 +77,7 @@ export class UserDetailsComponent implements OnInit {
         status: this.userForm.value.status as string
       }
       //send api request
-      this.store.dispatch(editUserById({obj: users}))
+      this.store.dispatch(editUserById({obj: users}));
       this.closeForm();
     }
   }
