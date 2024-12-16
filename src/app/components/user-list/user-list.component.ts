@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { UserDetailsComponent } from "../user-details/user-details.component";
 import { Store } from "@ngrx/store";
-import { Users } from "../../store/Model/Users";
-import { getAllUsersList } from "../../store/selectors/user.selectors";
-import { viewAllUsers, viewUserById } from "../../store/actions/user.actions";
+import { UserFilters, Users } from "../../store/Model/Users";
+import { filteredUsers, getAllUsersList } from "../../store/selectors/user.selectors";
+import { filterUsers, filterUsersSuccess, viewAllUsers, viewUserById } from "../../store/actions/user.actions";
+import { Observable } from "rxjs";
+import { UserState } from "../../store/user.state";
 
 @Component({
   selector: 'app-user-list',
@@ -12,18 +14,15 @@ import { viewAllUsers, viewUserById } from "../../store/actions/user.actions";
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  allUsers: Users[] = [];
+  allUsers$!: Observable<Partial<Users>[]>;
   displayedColumns: string[] = ["id", "name", "email", "role", "status", "action"];
+  filterObj: Partial<UserFilters> = UserState.filter;
   constructor( private dialog: MatDialog, private store: Store) {
   }
 
   ngOnInit() {
     this.store.dispatch(viewAllUsers())
-    this.store.select(getAllUsersList)
-        .subscribe((data) => {
-          this.allUsers = data;
-          //console.log("data",this.allUsers)
-        })
+    this.allUsers$ =  this.store.select(getAllUsersList);
   }
 
   openForm(id: number, title: string) {
@@ -41,5 +40,15 @@ export class UserListComponent implements OnInit {
   openUserForm(id: number, title: string) {
     this.store.dispatch(viewUserById({id: id}))
     this.openForm(id, title);
+  }
+
+  applyFilter(event: Event, filter: string) {
+    this.allUsers$ = this.store.select(filteredUsers);
+    const filterString = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.filterObj = { ... this.filterObj,
+      ...{[filter]: filterString},
+    };
+    console.log("filterObj", this.filterObj)
+    this.store.dispatch(filterUsers({ filter: this.filterObj }));
   }
 }

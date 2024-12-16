@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Users } from "../store/Model/Users";
+import { UserFilters, Users } from "../store/Model/Users";
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +17,15 @@ export class UserService {
   }
   editUserById(data: Users) {
     return this.httpClient.put(this.baseURL+'/'+data.id, data);
+  }
+
+  filterUsers(userArray: Users[], filter: Partial<UserFilters>) {
+    return userArray.filter(user => {
+      const matchesName = filter["name"] ? user.name?.toLowerCase().includes(filter["name"].toLowerCase()) : true;
+      const matchesRole = filter["role"] ? user.role?.toLowerCase().includes(filter["role"].toLowerCase()) : true;
+      const matchesStatus = filter["status"] ? user.status?.toLowerCase().includes(filter["status"].toLowerCase()) : true;
+
+      return matchesName && matchesStatus && matchesRole;
+    });
   }
 }

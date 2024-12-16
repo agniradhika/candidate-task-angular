@@ -1,14 +1,39 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  editUserByIdSuccess,
+  editUserByIdSuccess, filterUsers, filterUsersSuccess,
   viewAllUserFail,
   viewAllUserSuccess, viewUserByIdFail,
   viewUserByIdSuccess
 } from '../actions/user.actions';
+import { UserFilters, Users } from "../Model/Users";
 import { UserState } from "../user.state";
 
+export interface UserState {
+  list: Users[];
+  filteredUsers: Users[];
+  filter: UserFilters;
+}
+
+export const initialState: UserState = {
+  list: [{
+    id: 0,
+    name: '',
+    email: '',
+    role: '',
+    status: '',
+    joining_date: '',
+    address: ''
+  }
+  ],
+  filteredUsers: [],
+  filter: {
+    name: '',
+    role: '',
+    status: ''
+  },
+}
 export const UsersReducer = createReducer(
-  UserState,
+  initialState,
   on(viewAllUserSuccess, (state, action) => {
     return {
       ...state,
@@ -46,6 +71,14 @@ export const UsersReducer = createReducer(
       errormessage: ''
     }
   }),
+  on(filterUsersSuccess, (state, action) => {
+    return {
+      ...state,
+      filteredUsers: action.filteredUsers,
+      errormessage: ''
+    }
+  }),
+
 );
 
 export function UserReducer (state: any, action: any) {

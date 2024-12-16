@@ -11,5 +11,13 @@ export interface Users {
 export interface UsersModel {
   list:Users[],
   userObj:Users,
-  errormessage:string
+  errormessage:string,
+  filteredUsers: Users[];
+  filter: UserFilters;
+}
+
+export interface UserFilters {
+  name: string,
+  role: string,
+  status: string
 }

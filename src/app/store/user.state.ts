@@ -11,5 +11,11 @@ export const UserState : UsersModel = {
     status: "",
     address: "",
     joining_date: "",
+  },
+  filteredUsers: [],
+  filter: {
+    name: "",
+    role: "",
+    status: ""
   }
 }

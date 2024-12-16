@@ -10,14 +10,16 @@ import {
   viewUserByIdFail,
   editUserById,
   editUserByIdSuccess,
-  editUserByIdFail,
+  editUserByIdFail, filterUsers, filterUsersSuccess, filterUsersFail,
 } from "../actions/user.actions";
-import { exhaustMap, map, of, catchError, switchMap } from "rxjs";
+import { exhaustMap, map, of, catchError, switchMap, withLatestFrom } from "rxjs";
+import { Store } from "@ngrx/store";
+import { getAllUsersList } from "../selectors/user.selectors";
 
 @Injectable()
 export class UserEffects {
 
-  constructor(private actions$: Actions,private userService: UserService) {}
+  constructor(private actions$: Actions,private userService: UserService, private store: Store) {}
 
   _viewAllUsers = createEffect(()=> this.actions$.pipe(
     ofType(viewAllUsers),
@@ -59,4 +61,14 @@ export class UserEffects {
     )
   )
 
+  _filterUsers = createEffect(()=>
+  this.actions$.pipe(
+    ofType(filterUsers),
+    withLatestFrom(this.store.select(getAllUsersList)),
+    switchMap(([action, users]) => {
+      const filteredUsers = this.userService.filterUsers(users, action.filter);
+      return of(filterUsersSuccess({ filteredUsers }));
+    }),
+    catchError(error => of(filterUsersFail({errormessage: error.message()})))
+  ));
 }
