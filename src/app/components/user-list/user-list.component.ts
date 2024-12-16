@@ -4,9 +4,9 @@ import { UserDetailsComponent } from "../user-details/user-details.component";
 import { Store } from "@ngrx/store";
 import { UserFilters, Users } from "../../store/Model/Users";
 import { filteredUsers, getAllUsersList } from "../../store/selectors/user.selectors";
-import { filterUsers, filterUsersSuccess, viewAllUsers, viewUserById } from "../../store/actions/user.actions";
-import { Observable } from "rxjs";
+import { filterUsers, viewAllUsers, viewUserById } from "../../store/actions/user.actions";
 import { UserState } from "../../store/user.state";
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-user-list',
@@ -14,15 +14,53 @@ import { UserState } from "../../store/user.state";
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  allUsers$!: Observable<Partial<Users>[]>;
   displayedColumns: string[] = ["id", "name", "email", "role", "status", "action"];
   filterObj: Partial<UserFilters> = UserState.filter;
-  constructor( private dialog: MatDialog, private store: Store) {
+    columns = [
+      {
+        columnDef: 'id',
+        title: 'ID',
+        cell: (row: any) => row.id,
+        filterable: false,
+      },
+      {
+        columnDef: 'name',
+        title: 'Name',
+        cell: (row: any) => row.name,
+        filterable: true,
+      },
+      {
+        columnDef: 'email',
+        title: 'Email',
+        cell: (row: any) => row.email,
+        filterable: false,
+      },
+      {
+        columnDef: 'role',
+        title: 'Role',
+        cell: (row: any) => row.role,
+        filterable: true,
+      },
+      {
+        columnDef: 'status',
+        title: 'Status',
+        cell: (row: any) => row.status,
+        filterable: true,
+      },
+      {
+        columnDef: 'action',
+        title: 'Action',
+        cell: (row: any) => ``,
+        filterable: false,
+      },
+    ];
+
+  constructor( private dialog: MatDialog, private store: Store, public userService: UserService) {
   }
 
   ngOnInit() {
     this.store.dispatch(viewAllUsers())
-    this.allUsers$ =  this.store.select(getAllUsersList);
+    this.userService.allUsers$ =  this.store.select(getAllUsersList);
   }
 
   openForm(id: number, title: string) {
@@ -43,7 +81,7 @@ export class UserListComponent implements OnInit {
   }
 
   applyFilter(event: Event, filter: string) {
-    this.allUsers$ = this.store.select(filteredUsers);
+    this.userService.allUsers$ = this.store.select(filteredUsers);
     const filterString = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this.filterObj = { ... this.filterObj,
       ...{[filter]: filterString},

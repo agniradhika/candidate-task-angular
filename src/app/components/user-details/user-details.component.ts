@@ -20,7 +20,8 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(public formBuilder: FormBuilder,
               private ref: MatDialogRef<UserDetailsComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private store: Store) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private store: Store) {
     this.title = this.data.title;
     this.id = this.data.id;
   }
@@ -33,7 +34,7 @@ export class UserDetailsComponent implements OnInit {
           id: data.id, name: data.name, email: data.email, role: data.role,
           address: data.address, joining_date: data.joining_date, status: data.status
         });
-        this.previousValue= { ...this.userForm.value };
+        this.previousValue = { ...this.userForm.value };
         this.userForm.disable();
       });
   }

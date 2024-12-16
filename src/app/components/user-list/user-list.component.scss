@@ -6,6 +6,10 @@ button{
   margin: 2px;
 }
 
-.search-field {
-  left: 20px;
+table {
+  padding: 10px;
+}
+
+.search-field:disabled {
+  visibility: hidden;
 }
