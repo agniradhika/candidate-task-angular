@@ -19,7 +19,7 @@ export class UserDetailsComponent implements OnInit {
   previousValue: any;
 
   constructor(public formBuilder: FormBuilder,
-              private ref: MatDialogRef<UserDetailsComponent>,
+              public ref: MatDialogRef<UserDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private store: Store) {
     this.id = this.data.id;
