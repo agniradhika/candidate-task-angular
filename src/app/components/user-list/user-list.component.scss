@@ -22,3 +22,17 @@ table {
   border-radius: 5px;
   margin: 5px 0;
 }
+
+.no-rows-found {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+  margin-top: 16px;
+  background-color: #f8f9fa;
+  color: #495057;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}

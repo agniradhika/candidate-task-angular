@@ -5,25 +5,28 @@
   <mat-card-content>
       <table mat-table [dataSource]="userService.allUsers$" class="mat-elevation-z8">
         @for (column of columns; track column) {
-          <ng-container matColumnDef="{{column.columnDef}}">
+            <ng-container matColumnDef="{{column.columnDef}}">
               <th mat-header-cell *matHeaderCellDef>
                 @if (column.columnDef !== "action") {
                   <span class="column-label">{{column.title}}</span>
-                <div>
-                  <input class="search-field" matInput [disabled]="!column.filterable" placeholder="Search {{column.title}}" (input)="applyFilter($event, column.columnDef)">
-                </div>
+                  <div>
+                    <input class="search-field" matInput [disabled]="!column.filterable" placeholder="Search {{column.title}}" (input)="applyFilter($event, column.columnDef)">
+                  </div>
                 }
-            </th>
-            <td mat-cell *matCellDef="let row">
-              <ng-container [ngSwitch]="column.columnDef">
-               <button  *ngSwitchCase="'action'"  (click)="openUserForm(row.id, 'View User')" mat-raised-button color="accent">View</button>
-                <span *ngSwitchDefault>{{ column.cell(row) }}</span>
-              </ng-container>
-            </td>
-          </ng-container>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <ng-container [ngSwitch]="column.columnDef">
+                  <button  *ngSwitchCase="'action'"  (click)="openUserForm(row.id, 'View User')" mat-raised-button color="accent">View</button>
+                  <span *ngSwitchDefault>{{ column.cell(row) }}</span>
+                </ng-container>
+              </td>
+            </ng-container>
         }
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row;columns:displayedColumns"></tr>
       </table>
+    <div class="no-rows-found" *ngIf="(userService.allUsers$ | async)?.length === 0">
+      No rows found.
+    </div>
   </mat-card-content>
 </mat-card>
